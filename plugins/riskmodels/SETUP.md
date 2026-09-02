@@ -40,6 +40,20 @@ claude plugin install riskmodels@riskmodels
 
 The plugin's `mcpServers` entry sends `Authorization: Bearer ${RISKMODELS_API_KEY}`.
 
+### Marketplace source mismatch
+
+If `marketplace add` fails with *network source differs from the one declared…*, this
+machine already registered marketplace name `riskmodels` from a **local path** (dev
+smoke) or another Git URL. Reset to the public repo:
+
+```bash
+claude plugin marketplace remove riskmodels
+claude plugin marketplace add BlueWaterCorp/riskmodels-plugin
+claude plugin install riskmodels@riskmodels
+```
+
+Keep the local path only while iterating on `RiskModels_API/claude-plugin/` before sync.
+
 ## Already connected via `@riskmodels/mcp` or a custom connector?
 
 Keep **one** MCP connection. Install this plugin for skills / commands / the
